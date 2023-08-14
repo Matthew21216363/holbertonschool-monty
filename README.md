@@ -1,1 +1,1 @@
-##Holbertonschool-monty##
+Holbertonschool-monty
