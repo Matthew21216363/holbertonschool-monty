@@ -1,9 +1,15 @@
-#ifndef MONTY_H
-#define MONTY_H
+#ifndef __MONTY_H__
+#define __MONTY_H__
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stddef.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <ctype.h>
 
-/* Libraries */
-
-/* Structs */
+char *buff;
 
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
@@ -14,7 +20,6 @@
  * Description: doubly linked list node structure
  * for stack, queues, LIFO, FIFO
  */
-
 typedef struct stack_s
 {
 	int n;
@@ -30,24 +35,23 @@ typedef struct stack_s
  * Description: opcode and its function
  * for stack, queues, LIFO, FIFO
  */
-
-typedef struct instruction_s
+typedef struct inst_s
 {
 	char *opcode;
 	void (*f)(stack_t **stack, unsigned int line_number);
-} instruction_t;
+} inst_t;
 
-/* Prototypes */
-void push_func(stack_t **stack, unsigned int line_number);
-void pall_func(stack_t **stack, unsigned int line_number);
-void pint_func(stack_t **stack, unsigned int line_number);
-void pop_func(stack_t **stack, unsigned int line_number);
-void swap_func(stack_t **stack, unsigned int line_number);
-void add_func(stack_t **stack, unsigned int line_number);
-void nop_func(stack_t **stack, unsigned int line_number);
-int cleanstr(char *line);
-int tok_num(char *str, char *delims);
-char **tokstr(char *line, char *delims);
-int substrLen(char *str, char *delims);
+void free_list(stack_t *head);
+void file_handler(char *file);
+int _atoi(char *str, unsigned int line_number);
+char **splitter(char *str, char *delim);
+void (*opsfinder(void))(stack_t **, unsigned int);
+void push(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack, unsigned int line_number);
+void pint(stack_t **stack, unsigned int line_number);
+void pop(stack_t **stack, unsigned int line_number);
+void swap(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
+void nop(stack_t **stack, unsigned int line_number);
 
 #endif
